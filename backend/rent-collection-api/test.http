@@ -1,0 +1,11 @@
+### Test User apis
+POST http://localhost:8082/api/users
+Content-Type: application/json
+
+{
+"fullName" : "Mary Banks",
+"phone": "0786754321",
+"email": "mary@gmail.com",
+"username": "marx",
+"password": "1234"
+}
