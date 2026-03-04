@@ -9,3 +9,92 @@ Content-Type: application/json
 "username": "marx",
 "password": "1234"
 }
+
+### Test User api with Roles
+POST http://localhost:8082/api/users
+Content-Type: application/json
+
+{
+  "fullName": "Mary Banks",
+  "email": "banks@gmail.com",
+  "password": "banks",
+  "phone": "078765412",
+  "role": "ADMIN",
+  "username": "Banks"
+}
+
+###Create property
+POST http://localhost:8082/api/properties
+Content-Type: application/json
+
+{
+  "name": "Kyalimpa rentals",
+  "description": "Self contained, flourish, security,proper services",
+  "location": "Kyanja"
+}
+
+###Create Room
+POST http://localhost:8082/api/rooms
+Content-Type: application/json
+
+{
+  "propertyId": 1,
+  "roomNumber": "R-001",
+  "monthlyRent": 56700.00,
+  "status": "Occupied"
+}
+### Create tenant
+POST http://localhost:8082/api/tenants
+Content-Type: application/json
+
+{
+  "fullName": "major",
+  "tenantCode": "Tnt-003",
+  "phone": "0786122953",
+  "nationalId": "CF490472124567"
+}
+
+### Create lease
+POST http://localhost:8082/api/lease
+Content-Type: application/json
+
+{
+  "startDate": "2026-04-02",
+  "endDate": "2026-08-02",
+  "rentAmount": 650000,
+  "tenantId": 2,
+  "roomId": 1
+}
+
+### Create invoice
+POST http://localhost:8082/api/invoices
+Content-Type: application/json
+
+{
+  "leaseId": 1,
+  "amountDue": 50000,
+  "dueDate": "2026-08-02","invoiceMonth": "2026-08-01"
+
+}
+###Create  payment
+POST http://localhost:8082/api/payments
+Content-Type: application/json
+
+{
+"amountPaid": 10000,
+"paymentMethod": "Cash",
+"transactionReference": "Pmt:23467859",
+"paymentDate": "2026-04-02",
+"invoiceId": 1,
+"collectorId": 1,
+"notes": "Paid full rent"
+}
+
+###Create  receipt
+POST http://localhost:8082/api/receipts
+Content-Type: application/json
+
+{
+"paymentId": 1,
+  "receiptNumber": "Roo1"
+}

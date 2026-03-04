@@ -1,19 +1,32 @@
 package com.musenze.rentals.dtos.responses;
+
+
 import java.time.LocalDateTime;
 
-public class UserResponseDTO {
+public class TenantResponseDTO {
     private Integer id;
+    private String tenantCode;
     private String fullName;
-    private String email;
-    private Boolean isActive;
+    private String phone;
+    private String nationalId;
     private LocalDateTime createdAt;
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getTenantCode() {
+        return tenantCode;
+    }
+
+    public void setTenantCode(String tenantCode) {
+        this.tenantCode = tenantCode;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -22,20 +35,20 @@ public class UserResponseDTO {
         this.fullName = fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public String getNationalId() {
+        return nationalId;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
     }
 
     public LocalDateTime getCreatedAt() {

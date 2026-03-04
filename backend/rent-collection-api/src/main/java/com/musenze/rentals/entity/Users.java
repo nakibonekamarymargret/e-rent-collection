@@ -29,12 +29,15 @@ public class Users {
             name ="user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name ="role_id")
-
     )
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<AuditLog>auditLogs;
+
+    @OneToMany(mappedBy = "collector")
+    private Set<Payment> payments;
 // getters and setters
-
-
     public Integer getId() {
         return id;
     }
@@ -92,12 +95,42 @@ public class Users {
         return createdAt;
     }
 
+
+    public void setRole(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public Set<AuditLog> getAuditLogs() {
+        return auditLogs;
+    }
+
+    public void setAuditLogs(Set<AuditLog> auditLogs) {
+        this.auditLogs = auditLogs;
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
     }
 
     @Override

@@ -2,19 +2,23 @@ package com.musenze.rentals.service;
 
 import com.musenze.rentals.dtos.requests.UserRequestDTO;
 import com.musenze.rentals.dtos.responses.UserResponseDTO;
+import com.musenze.rentals.entity.Role;
 import com.musenze.rentals.entity.Users;
+import com.musenze.rentals.repository.RoleRepository;
 import com.musenze.rentals.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository){
+    private final RoleRepository roleRepository;
+    public UserService(UserRepository userRepository,RoleRepository roleRepository){
         this.userRepository=userRepository;
+        this.roleRepository=roleRepository;
     }
 
     public UserResponseDTO createUser(UserRequestDTO request){
@@ -24,6 +28,9 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
+        Role role = roleRepository.findByName(request.getRole())
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRole(Set.of(role));
 
         Users savedUser =userRepository.save(user);
         return  mapToResponse(savedUser);
@@ -41,6 +48,7 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setActive(user.getIsActive());
         dto.setCreatedAt(user.getCreatedAt());
+
         return  dto;
     }
 }
